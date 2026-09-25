@@ -3,14 +3,15 @@ package com.project.cartelera.model;
 import java.time.LocalDate;
 
 public class Pelicula {
-    String titulo;
-    String descripcion;
-    String duracion;
-    LocalDate fechaEstreno;
-    Genero genero;
-    Clasificacion clasificacion;
+    private String titulo;
+    private String descripcion;
+    private String duracion;
+    private LocalDate fechaEstreno;
+    private Genero genero;
+    private Clasificacion clasificacion;
 
-    public Pelicula(String titulo, String descripcion, String duracion, LocalDate fechaEstreno, Genero genero, Clasificacion clasificacion) {
+    public Pelicula(String titulo, String descripcion, String duracion, LocalDate fechaEstreno, Genero genero,
+            Clasificacion clasificacion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.duracion = duracion;
