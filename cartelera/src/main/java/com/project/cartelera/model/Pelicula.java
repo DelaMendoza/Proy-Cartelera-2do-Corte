@@ -3,6 +3,7 @@ package com.project.cartelera.model;
 import java.time.LocalDate;
 
 public class Pelicula {
+    private Long id;
     private String titulo;
     private String descripcion;
     private String duracion;
@@ -10,14 +11,19 @@ public class Pelicula {
     private Genero genero;
     private Clasificacion clasificacion;
 
-    public Pelicula(String titulo, String descripcion, String duracion, LocalDate fechaEstreno, Genero genero,
+    public Pelicula(Long id, String titulo, String descripcion, String duracion, LocalDate fechaEstreno, Genero genero,
             Clasificacion clasificacion) {
+        this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.duracion = duracion;
         this.fechaEstreno = fechaEstreno;
         this.genero = genero;
         this.clasificacion = clasificacion;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTitulo() {

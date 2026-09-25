@@ -2,6 +2,8 @@ package com.project.cartelera.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,27 +25,30 @@ public class PeliculasRestController {
     }
 
     @GetMapping
-    public String listar() {
-        return new String();
+    public List<Pelicula> listar() {
+        return servicio.listar();
     }
 
     @GetMapping("/{id}")
-    public String buscarId(@RequestParam Long id) {
-        return new String();
+    public Optional<Pelicula> buscarPorId(@RequestParam Long id) {
+        return servicio.buscarPorId(id);
     }
 
     @PostMapping
     public Pelicula crear(@RequestBody Pelicula pelicula) {
-        return pelicula;
+        Pelicula creada = servicio.crear(pelicula);
+        return creada;
     }
 
     @PutMapping("/{id}")
-    public String actualizar(@RequestParam Long id, @RequestBody Pelicula pelicula) {
-        return new String();
+    public Pelicula editar(@RequestParam Long id, @RequestBody Pelicula pelicula) {
+        Pelicula edit = servicio.editar(id, pelicula);
+        return edit;
     }
 
     @DeleteMapping("/{id}")
     public void borrar(@PathVariable long id) {
+        servicio.borrar(id);
     }
 
 }

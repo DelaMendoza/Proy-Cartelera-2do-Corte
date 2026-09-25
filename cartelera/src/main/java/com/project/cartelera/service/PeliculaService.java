@@ -8,6 +8,6 @@ public interface PeliculaService {
     List<Pelicula> listar();
     Pelicula crear(Pelicula pelicula);
     void borrar(Long id);
-    Optional<Pelicula> obtenerPorId(Long id);
+    Optional<Pelicula> buscarPorId(Long id);
     Pelicula editar(Long id, Pelicula pelicula);
 }
