@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/comunes :: cabeza}"></head>
+<body>
+    <header th:replace="~{fragmentos/comunes :: cabecera}"></header>
+    <nav th:replace="~{fragmentos/comunes :: menu('peliculas')}"></nav>
+
+    <form method="get" th:action="@{/peliculas}">
+        <input type="text" name="buscar" th:value="${buscar}" placeholder="Título...">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <p th:if="${#lists.isEmpty(peliculas)}" class="vacio">
+        No hay peliculas que coincidan con la búsqueda.
+    </p>
+
+    <table th:unless="${#lists.isEmpty(peliculas)}">
+        <thead>
+            <tr><th>#</th><th>Título</th><th>Descripcion</th><th>Duracion</th><th>Fecha de Estreno</th><th>Genero</th><th>Clasificacion</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+            <tr th:each="pelicula, iter : ${peliculas}">
+                <td th:text="${iter.count}">1</td>
+                <td>
+                    <a th:href="@{/peliculas/{id}(id=${pelicula.id})}" th:text="${pelicula.titulo}">Título</a>
+                </td>
+                <td th:text="${pelicula.descripcion}">Descripcion</td>
+                <td th:text="${pelicula.duracion}">Duracion</td>
+                <td th:text="${pelicula.fechaEstreno}">FechaEstreno</td>
+                <td th:text="${pelicula.genero}">Genero</td>
+                <td th:text="${pelicula.clasificacion}">Clasificacion</td>
+                <td>
+                    <form method="post" th:action="@{/peliculas/{id}/eliminar(id=${pelicula.id})}"
+                            onsubmit="return confirm('¿Eliminar esta película?')">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="aviso" th:if="${aviso}" th:text="${aviso}"></p>
+
+    <footer th:replace="~{fragmentos/comunes :: pie}"></footer>
+</body>
+</html>

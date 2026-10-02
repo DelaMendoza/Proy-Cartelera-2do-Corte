@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="cabeza">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="CineComfenalco">CineComfenalco</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+    <header th:fragment="cabecera">
+        <h1><a th:href="@{/}">CineComfenalco</a></h1>
+    </header>
+
+    <nav th:fragment="menu(activo)">
+        <a th:href="@{/peliculas}" th:classappend="${activo == 'peliculas'} ? 'activo'">Cartelera</a>
+        <a th:href="@{/peliculas/nueva}" th:classappend="${activo == 'nueva'} ? 'activo'">Añadir Pelicula</a>
+    </nav>
+
+    <footer th:fragment="pie">
+        <p>CineComfenalco - Catálogo de películas</p>
+    </footer>
+
+</body>
+</html>

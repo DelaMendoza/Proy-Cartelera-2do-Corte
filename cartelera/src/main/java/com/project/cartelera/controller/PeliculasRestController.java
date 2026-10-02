@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.project.cartelera.controller.dto.PeliculaDTO;
-import com.project.cartelera.controller.dto.PeliculaEntrada;
 import com.project.cartelera.model.Pelicula;
 import com.project.cartelera.service.PeliculaService;
+
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,30 +32,29 @@ public class PeliculasRestController {
     }
 
     @GetMapping
-    public List<PeliculaDTO> listar() {
-        return servicio.listar().stream().map(PeliculaDTO::de).toList();
+    public List<Pelicula> listar() {
+        return servicio.listar();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PeliculaDTO> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<Pelicula> buscarPorId(@PathVariable Long id) {
         return servicio.buscarPorId(id)
-                .map(PeliculaDTO::de)
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Película no encontrada con id: " + id));
     }
 
     @PostMapping
-    public ResponseEntity<PeliculaDTO> crear(@RequestBody PeliculaEntrada entrada) {
+    public ResponseEntity<Pelicula> crear(@Valid @RequestBody Pelicula entrada) {
         Pelicula creado = servicio.crear(entrada);
         return ResponseEntity
                 .created(URI.create("/api/peliculas/" + creado.getId()))
-                .body(PeliculaDTO.de(creado));
+                .body(creado);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PeliculaDTO> editar(@PathVariable Long id, @RequestBody PeliculaEntrada entrada) {
+    public ResponseEntity<Pelicula> editar(@PathVariable Long id, @Valid @RequestBody Pelicula entrada) {
         Pelicula actualizado = servicio.editar(id, entrada);
-        return ResponseEntity.ok(PeliculaDTO.de(actualizado));
+        return ResponseEntity.ok(actualizado);
     }
 
     @DeleteMapping("/{id}")

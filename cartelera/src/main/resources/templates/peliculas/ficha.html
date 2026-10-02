@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/comunes :: cabeza}"></head>
+<body>
+    <header th:replace="~{fragmentos/comunes :: cabecera}"></header>
+    <nav th:replace="~{fragmentos/comunes :: menu('peliculas')}"></nav>
+
+    <main>
+
+        <h2 th:text="${pelicula.titulo}">Título</h2>
+
+        <dl>
+            <dt>Descripcion</dt> <dd th:text="${pelicula.descripcion}">Descripcion</dd>
+            <dt>Duracion</dt>  <dd th:text="${pelicula.duracion}">Duracion</dd>
+            <dt>Fecha de Estreno</dt>  <dd th:text="${pelicula.fechaEstreno}">FechaEstreno</dd>
+            <dt>Género</dt>  <dd th:text="${pelicula.genero}">Genero</dd>
+            <dt>Clasificación</dt>  <dd th:text="${pelicula.clasificacion}">Clasificacion</dd>
+        </dl>
+
+        <a th:href="@{/peliculas}"><-- Volver al catálogo</a>
+        <a th:href="@{/peliculas/{id}/editar(id=${pelicula.id})}">Editar</a>
+
+    </main>
+
+    <footer th:replace="~{fragmentos/comunes :: pie}"></footer>
+</body>
+</html>
