@@ -1,0 +1,34 @@
+
+body { font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 60rem; padding: 0 1rem; background: #f6f7f9; color: #222; }
+header h1 { margin: 0; font-size: 1.6rem; }
+header h1 a { color: inherit; text-decoration: none; }
+.sub { color: #666; margin-top: 0; }
+
+
+nav { display: flex; gap: 1rem; margin: 1rem 0; border-bottom: 1px solid #ddd; }
+nav a { padding: .5rem 0; text-decoration: none; color: #444; }
+nav a.activo { color: #0a6; border-bottom: 2px solid #0a6; font-weight: 600; }
+
+
+main { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+form { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+form label { display: grid; gap: .25rem; margin: .5rem 0; width: 100%; }
+input, select, textarea { padding: .4rem .6rem; border: 1px solid #ccc; border-radius: 4px; font: inherit; }
+button { padding: .4rem .9rem; cursor: pointer; }
+a { color: #0a58ca; }
+
+
+table { border-collapse: collapse; width: 100%; margin-top: 1rem; background: white; }
+th, td { border-bottom: 1px solid #ddd; padding: .5rem; text-align: left; }
+th { background: #eef1f4; font-size: .8rem; text-transform: uppercase; }
+tr.impar { background: #fafbfc; }
+.adulta { color: #b23; font-weight: 600; }
+.marca { font-size: .75rem; background: #eef; padding: 0 .4rem; border-radius: 4px; }
+.vacio { color: #777; font-style: italic; }
+.aviso { background: #e6f4ea; border: 1px solid #b7dfc0; padding: .5rem .8rem; border-radius: 4px; }
+.error { color: #b23; font-size: .85rem; margin: .1rem 0 .5rem; }
+.botones { display: flex; gap: .8rem; align-items: center; margin-top: 1rem; }
+.peligro { color: #b23; }
+dl { display: grid; grid-template-columns: 10rem 1fr; gap: .3rem 1rem; }
+dt { font-weight: 600; color: #555; }
+footer { color: #777; font-size: .85rem; margin-top: 1.5rem; text-align: center; }

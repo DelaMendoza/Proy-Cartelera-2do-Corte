@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/comunes :: cabeza('Película')}"></head>
+<body>
+<header th:replace="~{fragmentos/comunes :: cabecera}"></header>
+<nav th:replace="~{fragmentos/comunes :: menu('nueva')}"></nav>
+
+<main>
+
+    <h2 th:text="${pelicula.id} == null ? 'Nueva película' : 'Editar película'">Nueva película</h2>
+
+    <form method="post" th:object="${pelicula}"
+          th:action="${pelicula.id} == null
+                     ? @{/peliculas}
+                     : @{/peliculas/{id}(id=${pelicula.id})}">
+
+        <label>Título
+            <input type="text" th:field="*{titulo}">
+        </label>
+        <p class="error" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}">Error</p>
+
+        <label>Descripción
+            <textarea th:field="*{descripcion}" rows="3"></textarea>
+        </label>
+        <p class="error" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Error</p>
+
+        <label>Duración (ej. 2h 46m)
+            <input type="text" th:field="*{duracion}" placeholder="2h 00m">
+        </label>
+        <p class="error" th:if="${#fields.hasErrors('duracion')}" th:errors="*{duracion}">Error</p>
+
+        <label>Fecha de estreno
+            <input type="date" th:field="*{fechaEstreno}">
+        </label>
+        <p class="error" th:if="${#fields.hasErrors('fechaEstreno')}" th:errors="*{fechaEstreno}">Error</p>
+
+        <label>Género
+            <select th:field="*{genero}">
+                <option value="">-- elige --</option>
+                <option th:each="g : ${T(com.project.cartelera.model.Genero).values()}"
+                        th:value="${g.name}" th:text="${g.name}">ACCIÓN</option>
+            </select>
+        </label>
+        <p class="error" th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}">Error</p>
+
+        <label>Clasificación
+            <select th:field="*{clasificacion}">
+                <option value="">-- elige --</option>
+                <option th:each="c : ${T(com.project.cartelera.model.Clasificacion).values()}"
+                        th:value="${c.name}" th:text="${c.name}">TP</option>
+            </select>
+        </label>
+        <p class="error" th:if="${#fields.hasErrors('clasificacion')}" th:errors="*{clasificacion}">Error</p>
+
+        <div class="botones">
+            <button type="submit">Guardar</button>
+            <a th:href="@{/peliculas}">Cancelar</a>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="~{fragmentos/comunes :: pie}"></footer>
+</body>
+</html>

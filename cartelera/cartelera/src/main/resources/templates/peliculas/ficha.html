@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/comunes :: cabeza(${pelicula.titulo})}"></head>
+<body>
+<header th:replace="~{fragmentos/comunes :: cabecera}"></header>
+<nav th:replace="~{fragmentos/comunes :: menu('peliculas')}"></nav>
+
+<main>
+
+    <h2 th:text="${pelicula.titulo}">Título</h2>
+
+    <p class="subtitulo" th:text="|Ficha #${pelicula.id} · ${pelicula.genero}|">Ficha</p>
+
+    <dl>
+        <dt>Descripción</dt>
+
+        <dd th:if="${#strings.isEmpty(pelicula.descripcion)}" class="vacio">Sin descripción</dd>
+        <dd th:unless="${#strings.isEmpty(pelicula.descripcion)}" th:text="${pelicula.descripcion}">Descripción</dd>
+
+        <dt>Duración</dt>
+        <dd th:text="${pelicula.duracion} ?: '—'">2h 00m</dd>
+
+        <dt>Estreno</dt>
+        <dd th:text="${pelicula.fechaEstreno != null} ? ${#temporals.format(pelicula.fechaEstreno, 'dd/MM/yyyy')} : '—'">01/01/2024</dd>
+
+        <dt>Género</dt>
+        <dd th:text="${pelicula.genero}">ACCIÓN</dd>
+
+        <dt>Clasificación</dt>
+        <dd>
+            <span th:switch="${pelicula.clasificacion}">
+                <span th:case="${T(com.project.cartelera.model.Clasificacion).TODO_PUBLICO}">Todo público</span>
+                <span th:case="${T(com.project.cartelera.model.Clasificacion).MAYORES_DE_7}">Mayores de 7</span>
+                <span th:case="${T(com.project.cartelera.model.Clasificacion).MAYORES_DE_15}">Mayores de 15</span>
+                <span th:case="${T(com.project.cartelera.model.Clasificacion).MAYORES_DE_18}" class="adulta">Mayores de 18</span>
+                <span th:case="*">—</span>
+            </span>
+        </dd>
+    </dl>
+
+    <p class="acciones">
+        <a th:href="@{/peliculas}">← Volver al catálogo</a>
+        <a th:href="@{/peliculas/{id}/editar(id=${pelicula.id})}">Editar</a>
+    </p>
+
+    <form method="post" th:action="@{/peliculas/{id}/borrar(id=${pelicula.id})}"
+          onsubmit="return confirm('¿Borrar esta película?')">
+        <button type="submit" class="peligro">Borrar</button>
+    </form>
+</main>
+
+<footer th:replace="~{fragmentos/comunes :: pie}"></footer>
+</body>
+</html>

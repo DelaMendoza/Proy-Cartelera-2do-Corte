@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/comunes :: cabeza('Inicio')}"></head>
+<body>
+<header th:replace="~{fragmentos/comunes :: cabecera}"></header>
+<nav th:replace="~{fragmentos/comunes :: menu('')}"></nav>
+
+<main>
+    <h2 th:text="|Bienvenido a #{app.nombre}|">Bienvenido</h2>
+    <p th:if="${total == 0}">Todavía no hay películas.</p>
+    <p th:unless="${total == 0}" th:text="|Tenemos ${total} película(s) en cartelera|">Tenemos películas</p>
+    <p>
+        <a th:href="@{/peliculas}">Ver catálogo</a>
+        <a th:href="@{/peliculas/nueva}">Añadir película</a>
+    </p>
+</main>
+
+<footer th:replace="~{fragmentos/comunes :: pie}"></footer>
+</body>
+</html>

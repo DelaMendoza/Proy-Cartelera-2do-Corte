@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="cabeza(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo} + ' · Cartelera'">Cartelera</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <header th:fragment="cabecera">
+        <h1><a th:href="@{/}" th:text="#{app.nombre}">Cartelera</a></h1>
+        <p class="sub">Sitio web de prueba API - Taller Desarrollo de Software</p>
+    </header>
+
+    <nav th:fragment="menu(activo)">
+        <a th:href="@{/peliculas}"
+        th:classappend="${activo == 'peliculas'} ? 'activo'"
+        th:text="#{menu.catalogo}">Catálogo</a>
+        <a th:href="@{/peliculas/nueva}"
+        th:classappend="${activo == 'nueva'} ? 'activo'"
+        th:text="#{menu.nueva}">Nueva película</a>
+        <a th:href="@{/api/peliculas}">API</a>
+    </nav>
+
+    <footer th:fragment="pie">
+        <p th:text="#{app.pie}">Delany Mendoza - Miguel Benitez - Daniel Galvis</p>
+    </footer>
+
+</body>
+</html>

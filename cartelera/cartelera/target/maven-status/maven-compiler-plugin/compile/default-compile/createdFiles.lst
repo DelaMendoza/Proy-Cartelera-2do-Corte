@@ -1,0 +1,11 @@
+com\project\cartelera\controller\dto\PeliculaDTO.class
+com\project\cartelera\controller\dto\PeliculaEntrada.class
+com\project\cartelera\model\Clasificacion.class
+com\project\cartelera\model\Pelicula.class
+com\project\cartelera\model\Genero.class
+com\project\cartelera\CarteleraApplication.class
+com\project\cartelera\controller\PeliculaRestController.class
+com\project\cartelera\service\PeliculaServiceImpl.class
+com\project\cartelera\controller\InicioController.class
+com\project\cartelera\controller\SaludoController.class
+com\project\cartelera\service\PeliculaService.class
